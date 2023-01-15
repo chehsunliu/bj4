@@ -18,6 +18,9 @@ jobs:
           python-version: '3.10' 
 
       - run: |
+          pip install -r ./requirements.txt
+
+      - run: |
           echo ${{ secrets.PTT_PASSWORD }} | \
             python app.py \
               --username ${{ secrets.PTT_USERNAME }}
