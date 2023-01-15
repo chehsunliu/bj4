@@ -2,7 +2,7 @@ name: Run
 
 on:
   schedule:
-    - cron:  '0 7 * * *'
+    - cron:  '0/15 7 * * *'
 
 jobs:
   ptt-login:
@@ -21,7 +21,7 @@ jobs:
           pip install -r ./requirements.txt
 
       - run: |
-          echo ${{ secrets.PTT_PASSWORD }} | \
+          echo -ne '${{ secrets.PTT_PASSWORD }}' | \
             python app.py \
-              --username ${{ secrets.PTT_USERNAME }}
-              --password-from /dev/stdin
+              --username '${{ secrets.PTT_USERNAME }}' \
+              --password-from '/dev/stdin'
