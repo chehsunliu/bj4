@@ -1,0 +1,24 @@
+name: Run
+
+on:
+  schedule:
+    - cron:  '0 7 * * *'
+
+jobs:
+  ptt-login:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ptt-login
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+
+      - run: |
+          echo ${{ secrets.PTT_PASSWORD }} | \
+            python app.py \
+              --username ${{ secrets.PTT_USERNAME }}
+              --password-from /dev/stdin
