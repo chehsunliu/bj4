@@ -2,7 +2,7 @@ name: Run
 
 on:
   schedule:
-    - cron:  '0/30 7 * * *'
+    - cron:  '0/30 7,8,9 * * *'
 
 jobs:
   ptt-login:
